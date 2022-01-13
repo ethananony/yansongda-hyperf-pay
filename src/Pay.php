@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yansongda\Pay;
 
+use Yansongda\Pay\Contract\LoggerInterface;
 use Yansongda\Pay\Provider\Alipay;
 use Yansongda\Pay\Provider\Wechat;
 use Psr\Container\ContainerInterface;
@@ -52,5 +53,13 @@ class Pay
     public function wechat()
     {
         return $this->container->get(Wechat::class);
+    }
+
+    /**
+     * @return LoggerInterface
+     */
+    public function logger()
+    {
+        return $this->container->get(LoggerInterface::class);
     }
 }
