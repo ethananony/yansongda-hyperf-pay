@@ -16,5 +16,9 @@ class RefundPlugin extends GeneralPlugin
 
     protected function doSomething(Rocket $rocket): void
     {
+        if (! $rocket->getPayload()->has('notify_url')) {
+            $config = get_wechat_config($rocket->getParams());
+            $rocket->mergePayload(['notify_url' => $config->get('notify_url')]);
+        }
     }
 }
